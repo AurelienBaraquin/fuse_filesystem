@@ -25,7 +25,7 @@ node_t *new_node(const char *name, node_t *parent) {
 
     memset(node, 0, sizeof(node_t));
     
-    node->name = strrchr(name, '/');
+    node->name = strdup(strrchr(name, '/'));
     node->content = NULL;
     node->parent = parent;
     
@@ -140,9 +140,11 @@ void init_root(void) {
 void init_root(void);
 
 node_t *sys_add_file(const char *path) {
-    pthread_mutex_lock(&tree_mutex);
-
     if (strlen(path) < 2) {
+        goto error;
+    }
+
+    if (get_node(path)) {
         goto error;
     }
 
@@ -160,24 +162,19 @@ node_t *sys_add_file(const char *path) {
         goto error;
     }
 
-    pthread_mutex_unlock(&tree_mutex);
     return file;
 
 error:
-    pthread_mutex_unlock(&tree_mutex);
     return NULL;
 }
 
 int sys_remove_file(const char *path) {
-    pthread_mutex_lock(&tree_mutex);
     node_t *file = get_node(path);
     if (!file) {
         return -1;
     }
     
-    int r = remove_child_from_parent(file->parent, file);
-    pthread_mutex_unlock(&tree_mutex);
-    return r;
+    return remove_child_from_parent(file->parent, file);
 }
 
 
@@ -190,10 +187,7 @@ node_t *sys_get_root(void) {
 }
 
 node_t *get_file(const char *path) {
-    pthread_mutex_lock(&tree_mutex);
-    node_t *node = get_node(path);
-    pthread_mutex_unlock(&tree_mutex);
-    return node;
+    return get_node(path);
 }
 
 
@@ -214,10 +208,8 @@ void print_tree_helper(node_t *node, int depth) {
 }
 
 void print_tree(void) {
-    pthread_mutex_lock(&tree_mutex);
     if (!root)
         printf("Empty tree\n");
     else
         print_tree_helper(root, 0);
-    pthread_mutex_unlock(&tree_mutex);
 }

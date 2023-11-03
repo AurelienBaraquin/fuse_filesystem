@@ -4,12 +4,14 @@
 //* GETATTR ___________________________________________________________________*/
 int ffuse_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
+    lock_tree();
+
     if (!path)
-        return -ENOENT;
+        RETURN_UNLOCK_TREE(-ENOENT);
 
     node_t *file = get_file(path);
     if (!file)
-        return -ENOENT;
+        RETURN_UNLOCK_TREE(-ENOENT);
     memset(stbuf, 0, sizeof(struct stat));
 
     stbuf->st_mode = file->stat.st_mode;
@@ -21,5 +23,6 @@ int ffuse_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *f
     stbuf->st_mtime = file->stat.st_mtime;
     stbuf->st_ctime = file->stat.st_ctime;
 
+    unlock_tree();
     return 0;
 }

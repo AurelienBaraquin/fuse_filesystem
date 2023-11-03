@@ -37,3 +37,5 @@ void init_root(void);
 
 void lock_tree(void);
 void unlock_tree(void);
+
+#define RETURN_UNLOCK_TREE(x) do { unlock_tree(); return x; } while(0)

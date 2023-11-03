@@ -4,19 +4,12 @@
 
 static int ffuse_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 {
-    printf("Entering create %s\n", path);
-    // Check if file already exists
-    // if (get_file(path) != NULL)
-    //     return -EEXIST;
-
-    printf("Before add file %s\n", path);
+    lock_tree();
 
     // Create new file node
     node_t *file = sys_add_file(path);
     if (!file)
-        return -ENOENT;
-
-    printf("Before fill stat %s\n", path);
+        RETURN_UNLOCK_TREE(-ENOENT);
 
     // Set file attributes
     file->stat.st_mode = S_IFREG | mode;
@@ -28,8 +21,8 @@ static int ffuse_create(const char *path, mode_t mode, struct fuse_file_info *fi
     file->stat.st_mtime = time(NULL);
     file->stat.st_ctime = time(NULL);
 
-    printf("Created file %s\n", path);
-
+    print_tree();
+    unlock_tree();
     return 0;
 }
 
