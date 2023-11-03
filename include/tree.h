@@ -15,8 +15,8 @@ typedef struct node {
 } node_t;
 
 /*  type    |   name     |   content |   size    |   parent  |   childs
-    reg     |     Y      |     Y     |     Y     |Y (no root)|      N
-    dir     |     Y      |     N     |     N     |Y (no root)|      Y
+    reg     |     Y      |     Y     |     Y     |     Y     |      N
+    dir     |     Y      |     N     |     N     |     Y     |      Y
     root    |   ("/")    |     N     |     N     |     N     |      Y
 */
 
