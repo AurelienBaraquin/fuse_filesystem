@@ -1,6 +1,12 @@
 # fuse_filesystem
 *This is my first time using fuse and create a full filesystem in local, I'm doing this to understand the concept of filesystem and improve my competences about it to create a network filesystem then.*
 
+## ***Before you start***
+### **Dependencies**
+- [libfuse-dev] (Filesystem in userspace) (https://packages.debian.org/fr/sid/libfuse-dev)
+- [check] (Unit testing framework for C) (https://packages.debian.org/fr/sid/check)
+- [make] (GNU Make) (https://packages.debian.org/fr/sid/make)
+
 ## What is fuse?
 FUSE (Filesystem in Userspace) is a simple interface for userspace programs to export a virtual filesystem to the Linux kernel. It also aims to provide a secure method for non privileged users to create and mount their own filesystem implementations.
 
