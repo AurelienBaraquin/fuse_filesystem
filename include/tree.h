@@ -22,9 +22,9 @@ typedef struct node {
 
 // strrchr: find the last occurence of any char in a string
 
-int add_file(const char *path);
-int remove_file(const char *path);
+int sys_add_file(const char *path);
+int sys_remove_file(const char *path);
 node_t *get_file(const char *path);
 void print_tree(void);
 void free_tree(node_t *node);
-node_t *get_root(void);
+node_t *sys_get_root(void);

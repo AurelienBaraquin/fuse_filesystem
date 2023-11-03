@@ -113,7 +113,7 @@ node_t *get_parent(const char *path) {
 
 
 //* User side functions ______________________________________________________*/
-int add_file(const char *path) {
+int sys_add_file(const char *path) {
     if (strlen(path) < 2) {
         return -1;
     }
@@ -137,7 +137,7 @@ int add_file(const char *path) {
     return add_child_to_parent(parent, file);
 }
 
-int remove_file(const char *path) {
+int sys_remove_file(const char *path) {
     node_t *file = get_node(path);
     if (!file) {
         return -1;
@@ -153,7 +153,7 @@ node_t *get_file(const char *path) {
     return get_node(path);
 }
 
-node_t *get_root(void) {
+node_t *sys_get_root(void) {
     return root;
 }
 
