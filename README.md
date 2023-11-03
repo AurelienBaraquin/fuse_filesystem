@@ -14,14 +14,14 @@ A virtual filesystem is a filesystem that doesn't exist in a storage device, it'
 
 # My objectives in this repo :
 - [x] Full binary tree filesystem
-- [x] Create / Delete / Read / Write   files / directories
-- [x] Add unique fonctionnalities like an auto git add or a auto make
-- [x] Add a way to keep data after reboot
+- [ ] Create / Delete / Read / Write   files / directories
+- [ ] Add unique fonctionnalities like an auto git add or a auto make
+- [ ] Add a way to keep data after reboot
 
 
 
 ## Final objectives :
-- [x] Create a network filesystem with client/server
-- [x] Encrypt data
-- [x] Add a compression system
-- [x] Add a way to store data in a database
+- Create a network filesystem with client/server
+- Encrypt data
+- Add a compression system
+- Add a way to store data in a database
