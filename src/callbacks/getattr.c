@@ -7,7 +7,7 @@ int ffuse_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *f
     if (!path)
         return -ENOENT;
 
-    node_t *file = get_node(path);
+    node_t *file = get_file(path);
     if (!file)
         return -ENOENT;
     memset(stbuf, 0, sizeof(struct stat));
