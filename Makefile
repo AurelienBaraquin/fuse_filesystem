@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall $(shell pkg-config fuse3 --cflags) -Iinclude
+CFLAGS = -Wall -g3 $(shell pkg-config fuse3 --cflags) -Iinclude
 LDFLAGS = $(shell pkg-config fuse3 --libs)
 
 SRCDIR = src
@@ -17,3 +17,5 @@ $(EXECUTABLE): $(OBJECTS)
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
+
+re : clean all
