@@ -149,9 +149,7 @@ int sys_remove_file(const char *path) {
 
 
 //* Getters user side_________________________________________________________*/
-node_t *get_file(const char *path) {
-    return get_node(path);
-}
+node_t *get_node(const char *);
 
 node_t *sys_get_root(void) {
     return root;
