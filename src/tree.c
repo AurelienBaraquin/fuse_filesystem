@@ -1,7 +1,11 @@
 #include "tree.h"
 
+//* Global variables _________________________________________________________*/
 node_t *root = NULL;
 
+
+
+//* New node _________________________________________________________________*/
 node_t *new_node(const char *name, node_t *parent) {
     node_t *node = malloc(sizeof(node_t));
     if (!node) {
@@ -17,12 +21,28 @@ node_t *new_node(const char *name, node_t *parent) {
     return node;
 }
 
+
+
+//* Free tree ________________________________________________________________*/
 void free_node(node_t *node) {
     free(node->name);
     free(node->content);
     free(node);
 }
 
+void free_tree(node_t *node) {
+    if (!node) {
+        return;
+    }
+    for (int i = 0; i < MAX_CHILD; i++) {
+        free_tree(node->childs[i]);
+    }
+    free(node);
+}
+
+
+
+//* Utils for tree____________________________________________________________*/
 int add_child_to_parent(node_t *parent, node_t *child) {
     child->parent = parent;
     for (int i = 0; i < MAX_CHILD; i++) {
@@ -90,6 +110,9 @@ node_t *get_parent(const char *path) {
     return parent;
 }
 
+
+
+//* User side functions ______________________________________________________*/
 int add_file(const char *path) {
     if (strlen(path) < 2) {
         return -1;
@@ -123,18 +146,11 @@ int remove_file(const char *path) {
     return remove_child_from_parent(file->parent, file);
 }
 
+
+
+//* Getters user side_________________________________________________________*/
 node_t *get_file(const char *path) {
     return get_node(path);
-}
-
-void free_tree(node_t *node) {
-    if (!node) {
-        return;
-    }
-    for (int i = 0; i < MAX_CHILD; i++) {
-        free_tree(node->childs[i]);
-    }
-    free(node);
 }
 
 node_t *get_root(void) {
