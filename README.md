@@ -25,3 +25,39 @@ A virtual filesystem is a filesystem that doesn't exist in a storage device, it'
 - Encrypt data
 - Add a compression system
 - Add a way to store data in a database
+
+
+
+### Binary tree filesystem
+
+Exemple of a binary tree filesystem (you can find it in the file ***tree.c / tree.h***):
+
+Using this code :
+```c
+// Test the tree
+int main(void)
+{
+    sys_add_file("/home");
+    sys_add_file("/home/user");
+    sys_add_file("/home/user/file.txt");
+    sys_add_file("/home/user/file2.txt");
+    sys_add_file("/home/lala");
+    sys_add_file("/home/lala/file.txt");
+    sys_remove_file("/home/lala");
+    sys_add_file("/home/lala");
+    sys_add_file("/home/lala/file.txt");
+    print_tree();
+    free_tree(sys_get_root());
+}
+```
+
+I get this output :
+```
+/
+  /home
+    /user
+      /file.txt
+      /file2.txt
+    /lala
+      /file.txt
+```
