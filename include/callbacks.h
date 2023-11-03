@@ -7,3 +7,4 @@ int ffuse_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t off
 int ffuse_create(const char *path, mode_t mode, struct fuse_file_info *fi);
 int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi);
 int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi);
+int ffuse_mkdir(const char *path, mode_t mode);
