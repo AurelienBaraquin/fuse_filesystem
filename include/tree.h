@@ -26,3 +26,5 @@ int add_file(const char *path);
 int remove_file(const char *path);
 node_t *get_file(const char *path);
 void print_tree(void);
+void free_tree(node_t *node);
+node_t *get_root(void);

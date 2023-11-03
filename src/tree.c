@@ -10,7 +10,7 @@ node_t *new_node(const char *name, node_t *parent) {
 
     memset(node, 0, sizeof(node_t));
     
-    node->name = strdup(name);
+    node->name = strrchr(name, '/');
     node->content = NULL;
     node->parent = parent;
     
@@ -37,7 +37,7 @@ int add_child_to_parent(node_t *parent, node_t *child) {
 int remove_child_from_parent(node_t *parent, node_t *child) {
     for (int i = 0; i < MAX_CHILD; i++) {
         if (parent->childs[i] == child) {
-            free_node(child);
+            free_tree(child);
             parent->childs[i] = NULL;
             return 0;
         }
@@ -60,7 +60,7 @@ node_t *get_node(const char *path) {
     while (token) {
         int found = 0;
         for (int i = 0; i < MAX_CHILD; i++) {
-            if (current->childs[i] && strcmp(current->childs[i]->name, token) == 0) {
+            if (current->childs[i] && strcmp(&current->childs[i]->name[1], token) == 0) {
                 current = current->childs[i];
                 found = 1;
                 break;
@@ -83,7 +83,7 @@ node_t *get_parent(const char *path) {
         free(path_copy);
         return NULL;
     }
-    
+
     *last_slash = '\0';
     node_t *parent = get_node(path_copy);
     free(path_copy);
@@ -91,11 +91,14 @@ node_t *get_parent(const char *path) {
 }
 
 int add_file(const char *path) {
+    if (strlen(path) < 2) {
+        return -1;
+    }
+
     if (!root) {
         root = new_node("/", NULL);
-        if (!root) {
+        if (!root)
             return -1;
-        }
     }
 
     node_t *parent = get_parent(path);
@@ -107,7 +110,7 @@ int add_file(const char *path) {
     if (!file) {
         return -1;
     }
-    
+
     return add_child_to_parent(parent, file);
 }
 
@@ -122,6 +125,20 @@ int remove_file(const char *path) {
 
 node_t *get_file(const char *path) {
     return get_node(path);
+}
+
+void free_tree(node_t *node) {
+    if (!node) {
+        return;
+    }
+    for (int i = 0; i < MAX_CHILD; i++) {
+        free_tree(node->childs[i]);
+    }
+    free(node);
+}
+
+node_t *get_root(void) {
+    return root;
 }
 
 
