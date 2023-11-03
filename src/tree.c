@@ -143,7 +143,7 @@ node_t *get_root(void) {
 
 
 
-
+#include <stdio.h>
 
 //* Print tree ________________________________________________________________*/
 void print_tree_helper(node_t *node, int depth) {
