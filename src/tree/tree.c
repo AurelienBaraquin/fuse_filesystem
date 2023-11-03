@@ -110,31 +110,49 @@ node_t *get_parent(const char *path) {
     return parent;
 }
 
+void init_root(void) {
+    root = malloc(sizeof(node_t));
+    if (!root) {
+        return;
+    }
+
+    memset(root, 0, sizeof(node_t));
+    root->name = strdup("/");
+    root->content = NULL;
+    root->stat.st_mode = S_IFDIR | 0755;
+    root->stat.st_nlink = 2;
+    root->parent = NULL;
+}
+
 
 
 //* User side functions ______________________________________________________*/
-int sys_add_file(const char *path) {
+void init_root(void);
+
+node_t *sys_add_file(const char *path) {
     if (strlen(path) < 2) {
-        return -1;
+        return NULL;
     }
 
     if (!root) {
-        root = new_node("/", NULL);
-        if (!root)
-            return -1;
+        init_root();
     }
 
     node_t *parent = get_parent(path);
     if (!parent) {
-        return -1;
+        return NULL;
     }
     
     node_t *file = new_node(path, parent);
     if (!file) {
-        return -1;
+        return NULL;
     }
 
-    return add_child_to_parent(parent, file);
+    if (add_child_to_parent(parent, file) == -1) {
+        return NULL;
+    }
+
+    return file;
 }
 
 int sys_remove_file(const char *path) {
