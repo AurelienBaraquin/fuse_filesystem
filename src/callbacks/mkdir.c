@@ -21,7 +21,6 @@ int ffuse_mkdir(const char *path, mode_t mode)
     file->stat.st_mtime = time(NULL);
     file->stat.st_ctime = time(NULL);
 
-    print_tree();
     unlock_tree();
     return 0;
 }
