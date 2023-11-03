@@ -26,7 +26,6 @@ static int ffuse_create(const char *path, mode_t mode, struct fuse_file_info *fi
     return 0;
 }
 
-
 static struct fuse_operations ffuse_oper = {
     .getattr = ffuse_getattr,
     .readdir = ffuse_readdir,

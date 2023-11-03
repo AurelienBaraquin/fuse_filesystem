@@ -1,7 +1,12 @@
 #include "tree.h"
 
+#define RETURN_UNLOCK(x) \
+    pthread_mutex_unlock(&tree_mutex); \
+    return x;
+
 //* Global variables _________________________________________________________*/
 node_t *root = NULL;
+pthread_mutex_t tree_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
 
@@ -66,12 +71,14 @@ int remove_child_from_parent(node_t *parent, node_t *child) {
 }
 
 node_t *get_node(const char *path) {
+    pthread_mutex_lock(&tree_mutex);
+
     if (!root) {
-        return NULL;
+        RETURN_UNLOCK(NULL);
     }
     
     if (strcmp(path, "/") == 0) {
-        return root;
+        RETURN_UNLOCK(root);
     }
     
     char *path_copy = strdup(path);
@@ -88,12 +95,12 @@ node_t *get_node(const char *path) {
         }
         if (!found) {
             free(path_copy);
-            return NULL;
+            RETURN_UNLOCK(NULL);
         }
         token = strtok(NULL, "/");
     }
     free(path_copy);
-    return current;
+    RETURN_UNLOCK(current);
 }
 
 node_t *get_parent(const char *path) {
@@ -111,8 +118,11 @@ node_t *get_parent(const char *path) {
 }
 
 void init_root(void) {
+    pthread_mutex_lock(&tree_mutex);
+
     root = malloc(sizeof(node_t));
     if (!root) {
+        pthread_mutex_unlock(&tree_mutex);
         return;
     }
 
@@ -122,6 +132,8 @@ void init_root(void) {
     root->stat.st_mode = S_IFDIR | 0755;
     root->stat.st_nlink = 2;
     root->parent = NULL;
+
+    pthread_mutex_unlock(&tree_mutex);
 }
 
 
@@ -132,10 +144,6 @@ void init_root(void);
 node_t *sys_add_file(const char *path) {
     if (strlen(path) < 2) {
         return NULL;
-    }
-
-    if (!root) {
-        init_root();
     }
 
     node_t *parent = get_parent(path);
