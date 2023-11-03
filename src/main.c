@@ -2,12 +2,14 @@
 #include "ffuse.h"
 #include "callbacks.h"
 
+
+
 static struct fuse_operations ffuse_oper = {
     .getattr = ffuse_getattr,
     .readdir = ffuse_readdir,
     // .open = ffuse_open,
     // .read = ffuse_read,
-    // .write = ffuse_write,
+    .write = ffuse_write,
     .create = ffuse_create,
     // .unlink = ffuse_unlink,
     // .mkdir = ffuse_mkdir,
