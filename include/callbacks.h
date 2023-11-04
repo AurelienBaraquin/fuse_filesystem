@@ -13,3 +13,5 @@ void ffuse_destroy(void *private_data);
 int ffuse_unlink(const char *path);
 int ffuse_rename(const char *oldpath, const char *newpath, unsigned int flags);
 int ffuse_rmdir(const char *path);
+int ffuse_flush(const char *path, struct fuse_file_info *fi);
+int ffuse_truncate(const char *path, off_t size, struct fuse_file_info *fi);
