@@ -22,7 +22,6 @@ START_TEST(test_sys_add_file) {
     ck_assert_ptr_nonnull(file);
     ck_assert_ptr_eq(root->childs[0], file);
 }
-END_TEST
 
 //* ADD DIR FROM ROOT __________________________________________________________*/
 START_TEST(test_sys_add_dir) {
