@@ -4,6 +4,7 @@
 #include "perm.h"
 
 //* OPEN ______________________________________________________________________*/
+/* Only check if the file can be open, we need implement neither O_CREAT nor O_TRUNC */
 int ffuse_open(const char *path, struct fuse_file_info *fi) {
     lock_tree();
 
@@ -11,10 +12,7 @@ int ffuse_open(const char *path, struct fuse_file_info *fi) {
         RETURN_UNLOCK_TREE(-ENOENT);
 
     if (get_file(path) == NULL) {
-        if (fi->flags & O_CREAT)
-            create_entry(path, DEFAULT_MODE | S_IFREG);
-        else
-            RETURN_UNLOCK_TREE(-ENOENT);
+        RETURN_UNLOCK_TREE(-ENOENT);
     }
 
     if ((fi->flags & O_ACCMODE) == O_RDONLY || (fi->flags & O_ACCMODE) == O_RDWR || (fi->flags & O_ACCMODE) == O_WRONLY) {
