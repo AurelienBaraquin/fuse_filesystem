@@ -88,28 +88,43 @@ I get this output :
 > The listed callbacks that are not yet implemented (indicated with ❌) are in development and will be supported in
 > later releases.
 
-| Callbacks         | Implemented  |
-|-------------------|-------------:|
-| getattr           |       ✔️      | 
-| readdir           |       ✔️      |
-| open              |       ❌     |
-| read              |       ✔️      |
-| write             |       ✔️      |
-| create            |       ✔️      |
-| unlink            |       ❌     |
-| mkdir             |       ✔️      |
-| rmdir             |       ❌     |
-| rename            |       ❌     |
-| truncate          |       ❌     |
-| utimens           |       ❌     |
-| chmod             |       ❌     |
-| chown             |       ❌     |
-| link              |       ❌     |
-| symlink           |       ❌     |
-| readlink          |       ❌     |
-| release           |       ❌     |
-| destroy           |       ❌     |
-
+| Callbacks         | Implemented  | Description  |
+|-------------------|:------------:|:-------------|
+| getattr           |       ✔️      | Obtenir les attributs d'un fichier. | 
+| readdir           |       ✔️      | Lire le contenu d'un répertoire. |
+| open              |       ❌     | Ouvrir un fichier. |
+| read              |       ✔️      | Lire des données d'un fichier. |
+| write             |       ✔️      | Écrire des données dans un fichier. |
+| create            |       ✔️      | Créer un fichier. |
+| unlink            |       ❌     | Supprimer un fichier. |
+| mkdir             |       ✔️      | Créer un répertoire. |
+| rmdir             |       ❌     | Supprimer un répertoire. |
+| rename            |       ❌     | Renommer un fichier ou un répertoire. |
+| truncate          |       ❌     | Modifier la taille d'un fichier. |
+| utimens           |       ❌     | Modifier les temps d'accès et de modification d'un fichier. |
+| chmod             |       ❌     | Modifier les permissions d'un fichier. |
+| chown             |       ❌     | Changer le propriétaire ou le groupe d'un fichier. |
+| link              |       ❌     | Créer un lien dur. |
+| symlink           |       ❌     | Créer un lien symbolique. |
+| readlink          |       ❌     | Lire la cible d'un lien symbolique. |
+| release           |       ❌     | Fermer un fichier. |
+| destroy           |       ❌     | Détruire la structure de données du système de fichiers. |
+| flush             |       ❌     | Rincer les ressources en cache. |
+| fsync             |       ❌     | Synchroniser les modifications d'un fichier. |
+| setxattr          |       ❌     | Définir un attribut étendu. |
+| getxattr          |       ❌     | Obtenir un attribut étendu. |
+| listxattr         |       ❌     | Lister les attributs étendus. |
+| removexattr       |       ❌     | Supprimer un attribut étendu. |
+| mknod             |       ❌     | Créer un fichier spécial ou ordinaire. |
+| statfs            |       ❌     | Obtenir les statistiques du système de fichiers. |
+| opendir           |       ❌     | Ouvrir un répertoire. |
+| releasedir        |       ❌     | Fermer un répertoire. |
+| fsyncdir          |       ❌     | Synchroniser les modifications d'un répertoire. |
+| init              |       ❌     | Initialiser le système de fichiers. C'est souvent utilisé pour configurer des ressources globales. |
+| access            |       ❌     | Vérifier les permissions d'accès à un fichier. |
+| ftruncate         |       ❌     | Modifier la taille d'un fichier ouvert. |
+| fgetattr          |       ❌     | Obtenir les attributs d'un fichier ouvert. |
+| lock              |       ❌     | Appliquer le verrouillage de fichier. |
 
 ## How to use it
 
