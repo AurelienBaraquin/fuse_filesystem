@@ -90,41 +90,41 @@ I get this output :
 
 | Callbacks         | Implemented  | Description  |
 |-------------------|:------------:|:-------------|
-| getattr           |       ✔️      | Obtenir les attributs d'un fichier. | 
-| readdir           |       ✔️      | Lire le contenu d'un répertoire. |
-| open              |       ❌     | Ouvrir un fichier. |
-| read              |       ✔️      | Lire des données d'un fichier. |
-| write             |       ✔️      | Écrire des données dans un fichier. |
-| create            |       ✔️      | Créer un fichier. |
-| unlink            |       ❌     | Supprimer un fichier. |
-| mkdir             |       ✔️      | Créer un répertoire. |
-| rmdir             |       ❌     | Supprimer un répertoire. |
-| rename            |       ❌     | Renommer un fichier ou un répertoire. |
-| truncate          |       ❌     | Modifier la taille d'un fichier. |
-| utimens           |       ❌     | Modifier les temps d'accès et de modification d'un fichier. |
-| chmod             |       ❌     | Modifier les permissions d'un fichier. |
-| chown             |       ❌     | Changer le propriétaire ou le groupe d'un fichier. |
-| link              |       ❌     | Créer un lien dur. |
-| symlink           |       ❌     | Créer un lien symbolique. |
-| readlink          |       ❌     | Lire la cible d'un lien symbolique. |
-| release           |       ❌     | Fermer un fichier. |
-| destroy           |       ❌     | Détruire la structure de données du système de fichiers. |
-| flush             |       ❌     | Rincer les ressources en cache. |
-| fsync             |       ❌     | Synchroniser les modifications d'un fichier. |
-| setxattr          |       ❌     | Définir un attribut étendu. |
-| getxattr          |       ❌     | Obtenir un attribut étendu. |
-| listxattr         |       ❌     | Lister les attributs étendus. |
-| removexattr       |       ❌     | Supprimer un attribut étendu. |
-| mknod             |       ❌     | Créer un fichier spécial ou ordinaire. |
-| statfs            |       ❌     | Obtenir les statistiques du système de fichiers. |
-| opendir           |       ❌     | Ouvrir un répertoire. |
-| releasedir        |       ❌     | Fermer un répertoire. |
-| fsyncdir          |       ❌     | Synchroniser les modifications d'un répertoire. |
-| init              |       ❌     | Initialiser le système de fichiers. C'est souvent utilisé pour configurer des ressources globales. |
-| access            |       ❌     | Vérifier les permissions d'accès à un fichier. |
-| ftruncate         |       ❌     | Modifier la taille d'un fichier ouvert. |
-| fgetattr          |       ❌     | Obtenir les attributs d'un fichier ouvert. |
-| lock              |       ❌     | Appliquer le verrouillage de fichier. |
+| getattr           |       ✔️      | Get attributes of a file. | 
+| readdir           |       ✔️      | Read the contents of a directory. |
+| open              |       ❌     | Open a file. |
+| read              |       ✔️      | Read data from a file. |
+| write             |       ✔️      | Write data to a file. |
+| create            |       ✔️      | Create a file. |
+| unlink            |       ❌     | Delete a file. |
+| mkdir             |       ✔️      | Create a directory. |
+| rmdir             |       ❌     | Delete a directory. |
+| rename            |       ❌     | Rename a file or directory. |
+| truncate          |       ❌     | Modify the size of a file. |
+| utimens           |       ❌     | Modify the access and modification times of a file. |
+| chmod             |       ❌     | Modify the permissions of a file. |
+| chown             |       ❌     | Change the owner or group of a file. |
+| link              |       ❌     | Create a hard link. |
+| symlink           |       ❌     | Create a symbolic link. |
+| readlink          |       ❌     | Read the target of a symbolic link. |
+| release           |       ❌     | Close a file. |
+| destroy           |       ❌     | Destroy the filesystem data structure. |
+| flush             |       ❌     | Flush cached resources. |
+| fsync             |       ❌     | Synchronize modifications to a file. |
+| setxattr          |       ❌     | Set an extended attribute. |
+| getxattr          |       ❌     | Get an extended attribute. |
+| listxattr         |       ❌     | List extended attributes. |
+| removexattr       |       ❌     | Remove an extended attribute. |
+| mknod             |       ❌     | Create a special or ordinary file. |
+| statfs            |       ❌     | Get filesystem statistics. |
+| opendir           |       ❌     | Open a directory. |
+| releasedir        |       ❌     | Close a directory. |
+| fsyncdir          |       ❌     | Synchronize modifications to a directory. |
+| init              |       ❌     | Initialize the filesystem. This is often used to set up global resources. |
+| access            |       ❌     | Check access permissions for a file. |
+| ftruncate         |       ❌     | Modify the size of an open file. |
+| fgetattr          |       ❌     | Get the attributes of an open file. |
+| lock              |       ❌     | Apply file locking. |
 
 ## How to use it
 
