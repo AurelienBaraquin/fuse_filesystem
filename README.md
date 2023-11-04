@@ -204,7 +204,7 @@ The tester executable isn't cleaned after the tests, you can run it again with :
 ```
 
 ***Integration tests***
-*Using test/fuse_test.pl and the library Test::More ([See dependencies](#dependencies))
+*Using test/fuse_test.pl and the library Test::More ([See dependencies](#dependencies))*
 
 ```bash
 make fusetest
