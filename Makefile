@@ -12,7 +12,7 @@ OBJECTS = $(SOURCES:.c=.o)
 TEST_SOURCES = $(shell find $(TESTDIR) -name '*_test.c')
 TEST_OBJECTS = $(TEST_SOURCES:.c=.o)
 EXECUTABLE = myfuse
-TEST_EXECUTABLE = run_tests
+TEST_EXECUTABLE = run_unitests
 
 all: $(EXECUTABLE)
 
@@ -28,7 +28,7 @@ $(TESTDIR)/%.o: $(TESTDIR)/%.c
 $(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(SRCDIR)/main.o, $(OBJECTS))
 	$(CC) $^ -o $@ $(CHECK_LDFLAGS) $(LDFLAGS)
 
-test: $(TEST_EXECUTABLE)
+unitest: $(TEST_EXECUTABLE)
 	./$(TEST_EXECUTABLE)
 	@echo "Tests completed."
 

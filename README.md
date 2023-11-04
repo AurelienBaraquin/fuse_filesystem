@@ -177,7 +177,7 @@ umount [mountpoint]
 
 ### Compile the project & run the tests
 ```bash
-make test
+make unitest
 ```
 
 > That will compile the project and run the tests.
@@ -185,7 +185,7 @@ make test
 
 The tester executable isn't cleaned after the tests, you can run it again with :
 ```bash
-./run_tests
+./run_unitests
 ```
 
 ## About FUSE
