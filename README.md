@@ -118,7 +118,7 @@ I get this output :
 | rmdir             |       ✔️      | Delete a directory. |
 | rename            |       ✔️      | Rename a file or directory. |
 | truncate          |       ✔️      | Modify the size of a file. |
-| utimens           |       ❌     | Modify the access and modification times of a file. |
+| utimens           |       ✔️      | Modify the access and modification times of a file. |
 | chmod             |       ✔️      | Modify the permissions of a file. |
 | chown             |       ❌     | Change the owner or group of a file. |
 | link              |       ❌     | Create a hard link. |
