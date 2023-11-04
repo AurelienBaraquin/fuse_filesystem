@@ -1,6 +1,8 @@
 #include <zlib.h>
 #include "tree.h"
 
+/* Compresses the content of a file using zlib
+    * Returns 0 on success, -1 on error */
 int decompress_content(node_t *file) {
     if (!file || !file->content)
         return -1;
@@ -24,6 +26,8 @@ int decompress_content(node_t *file) {
     return 0;
 }
 
+/* Decompresses the content of a file using zlib
+    * Returns 0 on success, -1 on error */
 int compress_content(node_t *file) {
     if (!file || !file->content)
         return -1;
