@@ -6,7 +6,6 @@ use File::Path qw(make_path remove_tree);
 
 # Directory to mount the FUSE file system
 my $test_dir = "./test_dir";
-my $fuse_log = "./test_fuse.log";
 
 # Unmount the FUSE file system if necessary
 system("umount $test_dir > /dev/null 2>&1");
@@ -17,7 +16,7 @@ unless (-d $test_dir) {
 }
 
 # Mount the FUSE file system (example system call)
-system("./myfuse $test_dir > $fuse_log") == 0 or die "Could not mount FUSE filesystem: $!";
+system("./myfuse $test_dir") == 0 or die "Could not mount FUSE filesystem: $!";
 
 # Test 1: Create a file with touch
 my $file_name = "$test_dir/file.txt";
