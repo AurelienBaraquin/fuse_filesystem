@@ -8,7 +8,7 @@ int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fu
     }
 
     lock_tree();
-    
+
     struct node *file = get_file(path);
     if (file == NULL) {
         RETURN_UNLOCK_TREE(-ENOENT);
@@ -17,7 +17,7 @@ int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fu
     if (offset >= file->stat.st_size) {
         RETURN_UNLOCK_TREE(0);
     }
-    
+
     size_t bytes_to_read = size;
     if (offset + size > file->stat.st_size) {
         bytes_to_read = file->stat.st_size - offset;
