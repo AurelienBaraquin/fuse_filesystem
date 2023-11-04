@@ -23,3 +23,26 @@ int decompress_content(node_t *file) {
 
     return 0; // Succès
 }
+
+int compress_content(node_t *file) {
+    if (!file || !file->content)
+        return -1;
+
+    uLongf compressed_size = compressBound(file->stat.st_size);
+
+    unsigned char *compressed_data = malloc(compressed_size);
+    if (!compressed_data)
+        return -1;
+
+    int ret = compress(compressed_data, &compressed_size, (const Bytef *)file->content, file->stat.st_size);
+    if (ret != Z_OK) {
+        free(compressed_data);
+        return -1;
+    }
+
+    free(file->content);
+    file->content = compressed_data;
+    file->compressed_size = compressed_size;
+
+    return 0; // Succès
+}
