@@ -8,6 +8,8 @@
 - [make] (GNU Make) (https://packages.debian.org/fr/sid/make)
 - [gcc] (GNU C compiler) (https://packages.debian.org/fr/sid/gcc)
 - [Test::More] (Perl module) (https://metacpan.org/pod/Test::More)
+- [perl-base] (Perl interpreter) (https://packages.debian.org/fr/sid/perl-base)
+- [zlib1g-dev] (Compression library) (https://packages.debian.org/fr/sid/zlib1g-dev)
 
 ### **How to install dependencies**
 > **Note**
@@ -22,7 +24,7 @@ sudo ./setup.sh
 ***Or you can install them manually :***
 
 ```bash
-sudo apt-get install libfuse-dev check make gcc perl perl-base
+sudo apt-get install libfuse-dev check make gcc perl perl-base zlib1g-dev
 ```
 ```bash
 cpan Test::More
