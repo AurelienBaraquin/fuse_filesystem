@@ -34,7 +34,7 @@ unitest: $(TEST_EXECUTABLE)
 	./$(TEST_EXECUTABLE)
 	@echo "Tests completed."
 
-fusetest:
+fusetest: $(EXECUTABLE)
 	perl $(TESTDIR)/$(FUSE_TEST_EXECUTABLE)
 
 clean:
