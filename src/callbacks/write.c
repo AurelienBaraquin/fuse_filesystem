@@ -18,5 +18,6 @@ int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, st
         node->stat.st_size = offset + size;
     }
     memcpy(node->content + offset, buf, size);
+    node->stat.st_mtime = time(NULL);
     RETURN_UNLOCK_TREE(size);
 }

@@ -6,17 +6,18 @@ int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fu
 {
     lock_tree();
     (void) fi;
-    struct node *node = get_file(path);
-    if (node == NULL) {
+    struct node *file = get_file(path);
+    if (file == NULL) {
         RETURN_UNLOCK_TREE(-ENOENT);
     }
-    if (offset >= node->stat.st_size) {
+    if (offset >= file->stat.st_size) {
         RETURN_UNLOCK_TREE(0);
     }
     size_t bytes_to_read = size;
-    if (offset + size > node->stat.st_size) {
-        bytes_to_read = node->stat.st_size - offset;
+    if (offset + size > file->stat.st_size) {
+        bytes_to_read = file->stat.st_size - offset;
     }
-    memcpy(buf, node->content + offset, bytes_to_read);
+    memcpy(buf, file->content + offset, bytes_to_read);
+    file->stat.st_atime = time(NULL);
     RETURN_UNLOCK_TREE(bytes_to_read);
 }
