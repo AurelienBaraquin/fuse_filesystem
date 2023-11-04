@@ -21,7 +21,7 @@ int decompress_content(node_t *file) {
     file->content = decompressed_data;
     file->stat.st_size = decompressed_size;
 
-    return 0; // Succès
+    return 0;
 }
 
 int compress_content(node_t *file) {
@@ -44,5 +44,5 @@ int compress_content(node_t *file) {
     file->content = compressed_data;
     file->compressed_size = compressed_size;
 
-    return 0; // Succès
+    return 0;
 }
