@@ -14,6 +14,13 @@
 >
 > This is for Debian based distributions, you can find the dependencies for your distribution on the links above.
 
+***Execute this shell script to install all the dependencies :***
+```bash
+sudo ./setup.sh
+```
+
+***Or you can install them manually :***
+
 ```bash
 sudo apt-get install libfuse-dev check make gcc perl perl-base
 ```
