@@ -26,6 +26,7 @@ typedef struct node {
 /* Don't forget to fill stat struct after creating a node */
 node_t *sys_add_file(const char *path);
 int sys_remove_file(const char *path);
+int sys_rename_file(const char *old_path, const char *new_path);
 node_t *get_file(const char *path);
 void print_tree(void);
 void free_tree(node_t *node);

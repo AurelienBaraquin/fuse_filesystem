@@ -177,6 +177,26 @@ int sys_remove_file(const char *path) {
     return remove_child_from_parent(file->parent, file);
 }
 
+int sys_rename_file(const char *old_path, const char *new_path) {
+    node_t *file = get_node(old_path);
+    if (!file) {
+        return -1;
+    }
+
+    node_t *new_parent = get_parent(new_path);
+    if (!new_parent) {
+        return -1;
+    }
+
+    if (get_node(new_path)) {
+        return -1;
+    }
+
+    free(file->name);
+    file->name = strdup(strrchr(new_path, '/'));
+    return 0;
+}
+
 
 
 //* Getters user side_________________________________________________________*/
