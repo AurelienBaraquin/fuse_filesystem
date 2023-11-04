@@ -12,3 +12,4 @@ void *ffuse_init(struct fuse_conn_info *conn, struct fuse_config *cfg);
 void ffuse_destroy(void *private_data);
 int ffuse_unlink(const char *path);
 int ffuse_rename(const char *oldpath, const char *newpath, unsigned int flags);
+int ffuse_rmdir(const char *path);
