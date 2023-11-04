@@ -1,5 +1,6 @@
 #include "tree.h"
 #include "ffuse.h"
+#include "compressor.h"
 
 //* WRITE ___________________________________________________________________*/
 int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
@@ -11,7 +12,7 @@ int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, st
         RETURN_UNLOCK_TREE(-ENOENT);
     }
     if (offset + size > node->stat.st_size) {
-        char *new_content = realloc(node->content, offset + size);
+        unsigned char *new_content = realloc(node->content, offset + size);
         if (new_content == NULL) {
             RETURN_UNLOCK_TREE(-ENOMEM);
         }
@@ -25,5 +26,8 @@ int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, st
     }
     memcpy(node->content + offset, buf, size);
     node->stat.st_mtime = time(NULL);
+
+    compress_content(node);
+
     RETURN_UNLOCK_TREE(size);
 }
