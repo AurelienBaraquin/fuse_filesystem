@@ -100,7 +100,7 @@ I get this output :
 | read              |       ✔️      | Read data from a file. |
 | write             |       ✔️      | Write data to a file. |
 | create            |       ✔️      | Create a file. |
-| unlink            |       ❌     | Delete a file. |
+| unlink            |       ✔️      | Delete a file. |
 | mkdir             |       ✔️      | Create a directory. |
 | rmdir             |       ❌     | Delete a directory. |
 | rename            |       ❌     | Rename a file or directory. |
@@ -112,7 +112,7 @@ I get this output :
 | symlink           |       ❌     | Create a symbolic link. |
 | readlink          |       ❌     | Read the target of a symbolic link. |
 | release           |       ❌     | Close a file. |
-| destroy           |       ❌     | Destroy the filesystem data structure. |
+| destroy           |       ✔️      | Destroy the filesystem data structure. |
 | flush             |       ❌     | Flush cached resources. |
 | fsync             |       ❌     | Synchronize modifications to a file. |
 | setxattr          |       ❌     | Set an extended attribute. |
@@ -124,7 +124,7 @@ I get this output :
 | opendir           |       ❌     | Open a directory. |
 | releasedir        |       ❌     | Close a directory. |
 | fsyncdir          |       ❌     | Synchronize modifications to a directory. |
-| init              |       ❌     | Initialize the filesystem. This is often used to set up global resources. |
+| init              |       ✔️      | Initialize the filesystem. This is often used to set up global resources. |
 | access            |       ❌     | Check access permissions for a file. |
 | ftruncate         |       ❌     | Modify the size of an open file. |
 | fgetattr          |       ❌     | Get the attributes of an open file. |
@@ -199,3 +199,5 @@ or **init** is used to initialize the filesystem but it's also used to set up gl
 > - **struct fuse_config** is used to set up the filesystem.
 >
 > In my case I use fuse_config->remove_hard = 1; this make the filesystem able to remove file / directory even if there is a process that use it. (It's useful when I encounter a bug and I can't remove a file / directory because it's used by a process)
+>
+> I also use **destroy** to free the tree and all the resources used by the filesystem.
