@@ -16,7 +16,7 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libfuse-dev check make gcc
+        sudo apt-get install -y libfuse-dev check make gcc libfuse3-dev
 
     # Étape 3: Installation de Perl et des dépendances CPAN
     - name: Set up Perl environment
