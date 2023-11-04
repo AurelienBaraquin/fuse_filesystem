@@ -45,6 +45,7 @@ A virtual filesystem is a filesystem that doesn't exist in a storage device, it'
 
 ## My objectives in this repo :
 - [x] Full binary tree filesystem
+- [x] Make my filesystem thread safe (using mutex for memory access)
 - [x] Create / Delete / Read / Write   files / directories
 - [ ] Set all callbacks from fuse and of course make them work
 - [ ] Add unique fonctionnalities like an auto git add or a auto make
