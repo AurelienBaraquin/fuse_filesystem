@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Test::More tests => 4; # The number here must correspond to the total number of tests
+use Test::More tests => 7; # The number here must correspond to the total number of tests
 use File::Path qw(make_path remove_tree);
 
 # Directory to mount the FUSE file system
@@ -17,6 +17,11 @@ unless (-d $test_dir) {
 
 # Mount the FUSE file system (example system call)
 system("./myfuse $test_dir") == 0 or die "Could not mount FUSE filesystem: $!";
+
+
+
+
+#* TESTS ______________________________________________________________________
 
 # Test 1: Create a file with touch
 my $file_name = "$test_dir/file.txt";
@@ -37,6 +42,25 @@ ok(-d $dir_name, 'Directory creation test with mkdir');
 system("touch $dir_name/file.txt");
 system("ls -l $dir_name") == 0 or stop_tester("Could not list directory: $!", $test_dir);
 ok(-e "$dir_name/file.txt", 'File creation test in directory');
+
+#Test 5: Create a file with echo
+system("echo 'Hello World!' > $file_name");
+system("ls -l $file_name") == 0 or stop_tester("Could not create file: $!", $test_dir);
+ok(-e $file_name, 'File creation test with echo');
+
+# Test 6: Read a file with cat
+system("cat $file_name") == 0 or stop_tester("Could not read file: $!", $test_dir);
+ok(-e $file_name, 'File read test with cat');
+
+# Test 7: Write to a file with echo
+system("echo 'HIIII' > $file_name");
+system("ls -l $file_name") == 0 or stop_tester("Could not write to file: $!", $test_dir);
+ok(-e $file_name, 'File write test with echo');
+
+#* ___________________________________________________________________________
+
+
+
 
 # Cleanup and unmount the FUSE file system
 system("umount $test_dir > /dev/null 2>&1");
