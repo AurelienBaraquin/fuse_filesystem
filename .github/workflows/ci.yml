@@ -1,0 +1,37 @@
+name: Continuous Integration
+
+# Déclenche le workflow sur les événements push et pull request
+# pour toutes les branches, vous pouvez restreindre à des branches spécifiques si nécessaire.
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Étape 1: Checkout du code
+    - uses: actions/checkout@v2
+
+    # Étape 2: Installation des dépendances système
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libfuse-dev check make gcc
+
+    # Étape 3: Installation de Perl et des dépendances CPAN
+    - name: Set up Perl environment
+      uses: shogo82148/actions-setup-perl@v1
+      with:
+        perl-version: '5.32' # Spécifiez la version de Perl à utiliser
+
+    # Étape 4: Installation des dépendances Perl à l'aide de cpanm
+    - name: Install CPAN modules
+      run: cpanm --installdeps .
+
+    # Étape 5: Exécution des tests unitaires
+    - name: Run unit tests
+      run: make unitest
+
+    # Étape 6: Exécution des tests fonctionnels
+    - name: Run functional tests
+      run: make fusetest
