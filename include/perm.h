@@ -15,16 +15,5 @@
 // 6: Permission de lecture et d'écriture (rw-)
 // 7: Toutes les permissions (rwx)
 
-enum Permission : unsigned short {
-    None = 0,
-    Execute = 1,
-    Write = 2,
-    WriteExecute = 3,
-    Read = 4,
-    ReadExecute = 5,
-    ReadWrite = 6,
-    All = 7
-};
-
-/* 0755 */
-#define DEFAULT_PERMISSION 0 All ReadExecute ReadExecute
+/* 0755 : -wxr-xr-xr */
+#define DEFAULT_MODE 0755
