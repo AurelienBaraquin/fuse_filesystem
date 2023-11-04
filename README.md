@@ -19,6 +19,10 @@ sudo apt-get install libfuse-dev check make
 ### What is fuse?
 FUSE (Filesystem in Userspace) is a simple interface for userspace programs to export a virtual filesystem to the Linux kernel. It also aims to provide a secure method for non privileged users to create and mount their own filesystem implementations.
 
+> **Note**
+>
+> See more in [About FUSE](#about-fuse)
+
 ### What is a filesystem?
 A filesystem is a way to organize data in a storage device, it's a way to store, retrieve and update data in a storage device.
 
@@ -172,3 +176,26 @@ The tester executable isn't cleaned after the tests, you can run it again with :
 ```bash
 ./run_tests
 ```
+
+## About FUSE
+
+> **Note**
+>
+> Here I only talk about technical things, like how it works, how to use it, etc...
+
+### What is a Callback?
+
+A callback is a function that is called when an event occurs, for example when try to read a file, the callback read is called.
+See [Supported Callbacks](#supported-callbacks) to see all the callbacks supported by this project.
+
+Some callbacks have others utilities, for example the callback **getattr** is used to get the attributes of a file, but it's also used to check if a file exist
+or **init** is used to initialize the filesystem but it's also used to set up global resources.
+
+> **By the way I want to speak about init**
+>
+> Like I said init is used to initialize the filesystem but it's also used to set up global resources, so I use it to initialize the tree and set up global resources.
+> But as you can see if you use it, the callback take two struct as params : **struct fuse_conn_info** and **struct fuse_config**.
+> - **struct fuse_conn_info** is used to set up the connection with the filesystem.
+> - **struct fuse_config** is used to set up the filesystem.
+>
+> In my case I use fuse_config->remove_hard = 1; this make the filesystem able to remove file / directory even if there is a process that use it. (It's useful when I encounter a bug and I can't remove a file / directory because it's used by a process)
