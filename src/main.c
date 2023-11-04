@@ -22,10 +22,10 @@ static struct fuse_operations ffuse_oper = {
     // .readlink = ffuse_readlink,
     // .release = ffuse_release,
     // .destroy = ffuse_destroy,
+    .init = ffuse_init,
 };
 
 int main(int argc, char *argv[])
 {
-    init_root();
     return fuse_main(argc, argv, &ffuse_oper, NULL);
 }
