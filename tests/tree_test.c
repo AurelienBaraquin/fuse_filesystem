@@ -93,6 +93,31 @@ START_TEST(five_layers_of_dirs) {
     }
 }
 
+//* RENAME FILE ________________________________________________________________*/
+START_TEST(test_sys_rename_file) {
+    node_t *file = sys_add_file("/testfile");
+    sys_rename_file("/testfile", "/testfile2");
+
+    ck_assert_str_eq(file->name, "/testfile2");
+}
+
+//* RENAME DIR _________________________________________________________________*/
+START_TEST(test_sys_rename_dir) {
+    node_t *dir = sys_add_file("/testdir");
+    sys_rename_file("/testdir", "/testdir2");
+
+    ck_assert_str_eq(dir->name, "/testdir2");
+}
+
+//* RENAME FILE IN DIR __________________________________________________________*/
+START_TEST(test_sys_rename_file_in_dir) {
+    sys_add_file("/testdir");
+    node_t *file = sys_add_file("/testdir/testfile");
+    sys_rename_file("/testdir/testfile", "/testdir/testfile2");
+
+    ck_assert_str_eq(file->name, "/testfile2");
+}
+
 //* TREE SUITE __________________________________________________________________*/
 Suite * tree_suite(void) {
     Suite *s;
@@ -111,6 +136,9 @@ Suite * tree_suite(void) {
     tcase_add_test(tc_core, test_sys_add_lots_of_files);
     tcase_add_test(tc_core, test_sys_add_lots_of_dirs);
     tcase_add_test(tc_core, five_layers_of_dirs);
+    tcase_add_test(tc_core, test_sys_rename_file);
+    tcase_add_test(tc_core, test_sys_rename_dir);
+    tcase_add_test(tc_core, test_sys_rename_file_in_dir);
     suite_add_tcase(s, tc_core);
 
     return s;
