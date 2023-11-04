@@ -36,6 +36,7 @@ unitest: $(TEST_EXECUTABLE)
 
 fusetest: $(EXECUTABLE)
 	perl $(TESTDIR)/$(FUSE_TEST_EXECUTABLE)
+	rmdir test_dir
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE) $(TEST_OBJECTS) $(TEST_EXECUTABLE)
