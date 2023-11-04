@@ -21,7 +21,7 @@ static struct fuse_operations ffuse_oper = {
     // .symlink = ffuse_symlink,
     // .readlink = ffuse_readlink,
     // .release = ffuse_release,
-    // .destroy = ffuse_destroy,
+    .destroy = ffuse_destroy,
     .init = ffuse_init,
 };
 
