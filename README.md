@@ -51,13 +51,13 @@ A virtual filesystem is a filesystem that doesn't exist in a storage device, it'
 - [x] Create / Delete / Read / Write   files / directories
 - [ ] Set all callbacks from fuse and of course make them work
 - [ ] Add unique fonctionnalities like an auto git add or a auto make
+- [x] Encrypt data (using zlib)
 - [ ] Add a way to keep data after reboot
 
 
 
 ## Final objectives :
 - Create a network filesystem with client/server
-- Encrypt data
 - Add a compression system
 - Add a way to store data in a database
 
