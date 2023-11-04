@@ -4,15 +4,18 @@
 #include "tree.h"
 
 Suite * tree_suite(void);
+Suite * compressor_suite(void);
 
 //* RUN TESTS ___________________________________________________________________*/
 int main(void) {
     int number_failed;
-    Suite *s;
     SRunner *sr;
 
-    s = tree_suite();
-    sr = srunner_create(s);
+    sr = srunner_create(NULL);
+
+    srunner_add_suite(sr, tree_suite());
+    srunner_add_suite(sr, compressor_suite());
+
 
     srunner_run_all(sr, CK_NORMAL);
     number_failed = srunner_ntests_failed(sr);

@@ -4,11 +4,11 @@
 #include "tree.h"
 
 //* SETUP ______________________________________________________________________*/
-void setup(void) {
+static void setup(void) {
     init_root();
 }
 
-void teardown(void) {
+static void teardown(void) {
     free_tree(sys_get_root());
 }
 
