@@ -4,6 +4,7 @@
 
 static struct fuse_operations ffuse_oper = {
     .getattr = ffuse_getattr,
+    // .setxattr = ffuse_setxattr,
     .readdir = ffuse_readdir,
     // .open = ffuse_open,
     .read = ffuse_read,
@@ -13,7 +14,7 @@ static struct fuse_operations ffuse_oper = {
     .mkdir = ffuse_mkdir,
     .rmdir = ffuse_rmdir,
     .rename = ffuse_rename,
-    // .truncate = ffuse_truncate,
+    .truncate = ffuse_truncate,
     // .utimens = ffuse_utimens,
     // .chmod = ffuse_chmod,
     // .chown = ffuse_chown,
@@ -23,6 +24,7 @@ static struct fuse_operations ffuse_oper = {
     // .release = ffuse_release,
     .destroy = ffuse_destroy,
     .init = ffuse_init,
+    .flush = ffuse_flush,
 };
 
 int main(int argc, char *argv[])
