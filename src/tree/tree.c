@@ -198,7 +198,7 @@ int sys_rename_file(const char *old_path, const char *new_path) {
     return 0;
 }
 
-#include <zlib.h>
+#include "compressor.h"
 
 //* Getters user side_________________________________________________________*/
 node_t *get_node(const char *);
@@ -212,7 +212,8 @@ node_t *get_file(const char *path) {
     if (!file)
         return NULL;
 
-    // decompress file->content
+    if (file->stat.st_mode & S_IFREG)
+        decompress_content(file);
 
     return file;
 }
