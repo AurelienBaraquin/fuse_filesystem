@@ -6,6 +6,8 @@
 - [libfuse-dev] (Filesystem in userspace) (https://packages.debian.org/fr/sid/libfuse-dev)
 - [check] (Unit testing framework for C) (https://packages.debian.org/fr/sid/check)
 - [make] (GNU Make) (https://packages.debian.org/fr/sid/make)
+- [gcc] (GNU C compiler) (https://packages.debian.org/fr/sid/gcc)
+- [Test::More] (Perl module) (https://metacpan.org/pod/Test::More)
 
 ### **How to install dependencies**
 > **Note**
@@ -13,7 +15,10 @@
 > This is for Debian based distributions, you can find the dependencies for your distribution on the links above.
 
 ```bash
-sudo apt-get install libfuse-dev check make
+sudo apt-get install libfuse-dev check make gcc perl perl-base
+```
+```bash
+cpan Test::More
 ```
 
 ### What is fuse?
@@ -175,7 +180,9 @@ umount [mountpoint]
 
 ## How to test it
 
-### Compile the project & run the tests
+### Compile the project as test mode & run tests
+
+***Unit tests***
 ```bash
 make unitest
 ```
@@ -187,6 +194,16 @@ The tester executable isn't cleaned after the tests, you can run it again with :
 ```bash
 ./run_unitests
 ```
+
+***Integration tests***
+*Using test/fuse_test.pl and the library Test::More ([See dependencies](#dependencies))
+
+```bash
+make fusetest
+```
+
+> That will compile the project and run the tests.
+> *You can see in output the tests results.*
 
 ## About FUSE
 
