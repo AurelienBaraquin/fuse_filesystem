@@ -14,6 +14,8 @@ TEST_OBJECTS = $(TEST_SOURCES:.c=.o)
 EXECUTABLE = myfuse
 TEST_EXECUTABLE = run_unitests
 
+FUSE_TEST_EXECUTABLE = fuse_test.pl
+
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
@@ -31,6 +33,9 @@ $(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(SRCDIR)/main.o, $(OBJECTS))
 unitest: $(TEST_EXECUTABLE)
 	./$(TEST_EXECUTABLE)
 	@echo "Tests completed."
+
+fusetest:
+	perl $(TESTDIR)/$(FUSE_TEST_EXECUTABLE)
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE) $(TEST_OBJECTS) $(TEST_EXECUTABLE)
