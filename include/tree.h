@@ -10,6 +10,7 @@
 typedef struct node {
     char *name;
     char *content;
+    size_t compressed_size;
     struct stat stat;
     struct node *parent;
     struct node *childs[MAX_CHILD];

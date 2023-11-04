@@ -28,6 +28,7 @@ node_t *new_node(const char *name, node_t *parent) {
     node->name = strdup(strrchr(name, '/'));
     node->content = NULL;
     node->parent = parent;
+    node->compressed_size = 0;
     
     return node;
 }
@@ -197,7 +198,7 @@ int sys_rename_file(const char *old_path, const char *new_path) {
     return 0;
 }
 
-
+#include <zlib.h>
 
 //* Getters user side_________________________________________________________*/
 node_t *get_node(const char *);
@@ -207,7 +208,13 @@ node_t *sys_get_root(void) {
 }
 
 node_t *get_file(const char *path) {
-    return get_node(path);
+    node_t *file = get_node(path);
+    if (!file)
+        return NULL;
+
+    // decompress file->content
+
+    return file;
 }
 
 
