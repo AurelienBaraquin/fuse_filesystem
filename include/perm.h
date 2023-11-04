@@ -15,5 +15,5 @@
 // 6: Permission de lecture et d'écriture (rw-)
 // 7: Toutes les permissions (rwx)
 
-/* 0755 : -wxr-xr-xr */
+/* 0755 */
 #define DEFAULT_MODE 0755

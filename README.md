@@ -109,24 +109,24 @@ I get this output :
 |-------------------|:------------:|:-------------|
 | getattr           |       ✔️      | Get attributes of a file. | 
 | readdir           |       ✔️      | Read the contents of a directory. |
-| open              |       ❌     | Open a file. |
+| open              |       ✔️      | Open a file. |
 | read              |       ✔️      | Read data from a file. |
 | write             |       ✔️      | Write data to a file. |
 | create            |       ✔️      | Create a file. |
 | unlink            |       ✔️      | Delete a file. |
 | mkdir             |       ✔️      | Create a directory. |
-| rmdir             |       ✔️     | Delete a directory. |
-| rename            |       ✔️     | Rename a file or directory. |
-| truncate          |       ✔️     | Modify the size of a file. |
+| rmdir             |       ✔️      | Delete a directory. |
+| rename            |       ✔️      | Rename a file or directory. |
+| truncate          |       ✔️      | Modify the size of a file. |
 | utimens           |       ❌     | Modify the access and modification times of a file. |
-| chmod             |       ❌     | Modify the permissions of a file. |
+| chmod             |       ✔️      | Modify the permissions of a file. |
 | chown             |       ❌     | Change the owner or group of a file. |
 | link              |       ❌     | Create a hard link. |
 | symlink           |       ❌     | Create a symbolic link. |
 | readlink          |       ❌     | Read the target of a symbolic link. |
 | release           |       ❌     | Close a file. |
 | destroy           |       ✔️      | Destroy the filesystem data structure. |
-| flush             |       ✔️     | Flush cached resources. |
+| flush             |       ✔️      | Flush cached resources. |
 | fsync             |       ❌     | Synchronize modifications to a file. |
 | setxattr          |       ❌     | Set an extended attribute. |
 | getxattr          |       ❌     | Get an extended attribute. |
