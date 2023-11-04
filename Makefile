@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -g3 $(shell pkg-config fuse3 --cflags) -Iinclude
-LDFLAGS = $(shell pkg-config fuse3 --libs)
+LDFLAGS = $(shell pkg-config fuse3 --libs) -lz
 
 CHECK_CFLAGS = $(shell pkg-config --cflags check)
 CHECK_LDFLAGS = $(shell pkg-config --libs check)
