@@ -162,6 +162,17 @@ The mountpoint is the path where you want to mount the filesystem.
 
 > *You can use a simple **empty** directory to mount the filesystem.*
 
+***If you want to unmount the filesystem you can use :***
+```bash
+fusermount -u [mountpoint]
+```
+
+or
+  
+```bash
+umount [mountpoint]
+```
+
 ## How to test it
 
 ### Compile the project & run the tests
