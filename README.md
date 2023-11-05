@@ -126,7 +126,7 @@ I get this output :
 | link              |       ❌     | Create a hard link. |
 | symlink           |       ❌     | Create a symbolic link. |
 | readlink          |       ❌     | Read the target of a symbolic link. |
-| release           |       ❌     | Close a file. |
+| release           |       ✔️     | Close a file. |
 | destroy           |       ✔️      | Destroy the filesystem data structure. |
 | flush             |       ✔️      | Flush cached resources. |
 | fsync             |       ❌     | Synchronize modifications to a file. |
@@ -143,7 +143,7 @@ I get this output :
 | access            |       ❌     | Check access permissions for a file. |
 | ftruncate         |       ❌     | Modify the size of an open file. |
 | fgetattr          |       ❌     | Get the attributes of an open file. |
-| lock              |       ❌     | Apply file locking. |
+| lock              |       ✔️     | Apply file locking. |
 
 ## How to use it
 
