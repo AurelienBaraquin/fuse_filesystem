@@ -22,3 +22,4 @@ void init_fd_table(void);
 int allocate_fd(node_t *node);
 void release_fd(int fd);
 fd_t *get_fd(int fd);
+fd_t *get_fd_from_node(node_t *node);
