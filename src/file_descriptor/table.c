@@ -53,3 +53,17 @@ fd_t *get_fd(int fd) {
     pthread_mutex_unlock(&fd_table_mutex);
     return ((void *)0);
 }
+
+fd_t *get_fd_from_node(node_t *node) {
+    pthread_mutex_lock(&fd_table_mutex);
+
+    for (int i = 0; i < MAX_FILES; i++) {
+        if (fd_table[i].attribued == 1 && fd_table[i].node == node) {
+            pthread_mutex_unlock(&fd_table_mutex);
+            return &fd_table[i];
+        }
+    }
+
+    pthread_mutex_unlock(&fd_table_mutex);
+    return ((void *)0);
+}
