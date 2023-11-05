@@ -22,11 +22,11 @@ static struct fuse_operations ffuse_oper = {
     // .link = ffuse_link,
     // .symlink = ffuse_symlink,
     // .readlink = ffuse_readlink,
-    // .release = ffuse_release,
+    .release = ffuse_release,
     .destroy = ffuse_destroy,
     .init = ffuse_init,
     .flush = ffuse_flush,
-    // .lock = ffuse_lock,
+    .lock = ffuse_lock,
 };
 
 int main(int argc, char *argv[])

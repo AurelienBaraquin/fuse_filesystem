@@ -2,6 +2,7 @@
 #include "ffuse.h"
 #include "utils.h"
 #include "perm.h"
+#include "fd.h"
 
 //* OPEN ______________________________________________________________________*/
 /* Only check if the file can be open, we need implement neither O_CREAT nor O_TRUNC */
@@ -31,6 +32,13 @@ int ffuse_open(const char *path, struct fuse_file_info *fi) {
         default:
             RETURN_UNLOCK_TREE(-EACCES);
     }
+
+    int fd = allocate_fd(file);
+    if (fd == -1) {
+        return -EMFILE;
+    }
+
+    fi->fh = (unsigned long)fd;
 
     RETURN_UNLOCK_TREE(0);
 }
