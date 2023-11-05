@@ -5,6 +5,7 @@
 //* TRUNCATE ___________________________________________________________________*/
 int ffuse_truncate(const char *path, off_t size, struct fuse_file_info *fi)
 {
+    (void) fi;
     lock_tree();
     struct node *node = get_file(path);
     if (node == NULL)
