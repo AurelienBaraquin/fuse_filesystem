@@ -4,7 +4,7 @@
 //* READ ___________________________________________________________________*/
 int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi) {
     (void) fi;
-    if (buf == NULL || size < 0) {
+    if (buf == NULL || size == (unsigned long)0) {
         return -EINVAL;
     }
 
@@ -20,7 +20,7 @@ int ffuse_read(const char *path, char *buf, size_t size, off_t offset, struct fu
     }
 
     size_t bytes_to_read = size;
-    if (offset + size > file->stat.st_size) {
+    if (offset + size > (unsigned long)file->stat.st_size) {
         bytes_to_read = file->stat.st_size - offset;
     }
 
