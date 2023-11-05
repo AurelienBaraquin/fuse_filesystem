@@ -19,3 +19,4 @@ int ffuse_chmod(const char *path, mode_t mode, struct fuse_file_info *fi);
 int ffuse_open(const char *path, struct fuse_file_info *fi);
 int ffuse_utimens(const char *path, const struct timespec *tv, struct fuse_file_info *fi);
 int ffuse_release(const char *path, struct fuse_file_info *fi);
+int ffuse_lock(const char *path, struct fuse_file_info *fi, int cmd, struct flock *lock);

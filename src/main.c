@@ -26,7 +26,7 @@ static struct fuse_operations ffuse_oper = {
     .destroy = ffuse_destroy,
     .init = ffuse_init,
     .flush = ffuse_flush,
-    // .lock = ffuse_lock,
+    .lock = ffuse_lock,
 };
 
 int main(int argc, char *argv[])
