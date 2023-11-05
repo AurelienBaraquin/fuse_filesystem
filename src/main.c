@@ -2,6 +2,7 @@
 #include "ffuse.h"
 #include "callbacks.h"
 
+//* OPERATIONS ________________________________________________________________*/
 static struct fuse_operations ffuse_oper = {
     .getattr = ffuse_getattr,
     // .setxattr = ffuse_setxattr,
@@ -25,6 +26,7 @@ static struct fuse_operations ffuse_oper = {
     .destroy = ffuse_destroy,
     .init = ffuse_init,
     .flush = ffuse_flush,
+    // .lock = ffuse_lock,
 };
 
 int main(int argc, char *argv[])
