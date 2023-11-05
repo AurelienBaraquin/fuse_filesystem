@@ -5,6 +5,7 @@
 /* Ignored fields: st_dev, st_blksize, st_ino (except for st_ino if use_ino mount option is given) */
 int ffuse_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
+    (void) fi;
     lock_tree();
 
     if (!path)
