@@ -5,6 +5,7 @@
 /* Set file access and modification times */
 int ffuse_utimens(const char *path, const struct timespec *tv, struct fuse_file_info *fi)
 {
+    (void) fi;
     if (tv == NULL)
         return 0;
 
