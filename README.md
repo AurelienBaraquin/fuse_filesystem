@@ -63,88 +63,6 @@ A virtual filesystem is a filesystem that doesn't exist in a storage device, it'
 
 
 
-### Binary tree filesystem
-
-Exemple of a binary tree filesystem (you can find it in the file ***tree.c / tree.h***):
-
-Using this code :
-```c
-// Test the tree
-int main(void)
-{
-    init_root();
-    sys_add_file("/home");
-    sys_add_file("/home/user");
-    sys_add_file("/home/user/file.txt");
-    sys_add_file("/home/user/file2.txt");
-    sys_add_file("/home/lala");
-    sys_add_file("/home/lala/file.txt");
-    sys_remove_file("/home/lala");
-    sys_add_file("/home/lala");
-    sys_add_file("/home/lala/file.txt");
-    print_tree();
-    free_tree(sys_get_root());
-}
-```
-
-I get this output :
-```
-/
-  /home
-    /user
-      /file.txt
-      /file2.txt
-    /lala
-      /file.txt
-```
-
-## Supported Callbacks
-
-***From the filesystem***
-
-> **Note**
->
-> The listed callbacks that are not yet implemented (indicated with ❌) are in development and will be supported in
-> later releases.
-
-| Callbacks         | Implemented  | Description  |
-|-------------------|:------------:|:-------------|
-| getattr           |       ✔️      | Get attributes of a file. | 
-| readdir           |       ✔️      | Read the contents of a directory. |
-| open              |       ✔️      | Open a file. |
-| read              |       ✔️      | Read data from a file. |
-| write             |       ✔️      | Write data to a file. |
-| create            |       ✔️      | Create a file. |
-| unlink            |       ✔️      | Delete a file. |
-| mkdir             |       ✔️      | Create a directory. |
-| rmdir             |       ✔️      | Delete a directory. |
-| rename            |       ✔️      | Rename a file or directory. |
-| truncate          |       ✔️      | Modify the size of a file. |
-| utimens           |       ✔️      | Modify the access and modification times of a file. |
-| chmod             |       ✔️      | Modify the permissions of a file. |
-| chown             |       ❌     | Change the owner or group of a file. |
-| link              |       ❌     | Create a hard link. |
-| symlink           |       ❌     | Create a symbolic link. |
-| readlink          |       ❌     | Read the target of a symbolic link. |
-| release           |       ✔️     | Close a file. |
-| destroy           |       ✔️      | Destroy the filesystem data structure. |
-| flush             |       ✔️      | Flush cached resources. |
-| fsync             |       ❌     | Synchronize modifications to a file. |
-| setxattr          |       ❌     | Set an extended attribute. |
-| getxattr          |       ❌     | Get an extended attribute. |
-| listxattr         |       ❌     | List extended attributes. |
-| removexattr       |       ❌     | Remove an extended attribute. |
-| mknod             |       ❌     | Create a special or ordinary file. |
-| statfs            |       ❌     | Get filesystem statistics. |
-| opendir           |       ❌     | Open a directory. |
-| releasedir        |       ❌     | Close a directory. |
-| fsyncdir          |       ❌     | Synchronize modifications to a directory. |
-| init              |       ✔️      | Initialize the filesystem. This is often used to set up global resources. |
-| access            |       ❌     | Check access permissions for a file. |
-| ftruncate         |       ❌     | Modify the size of an open file. |
-| fgetattr          |       ❌     | Get the attributes of an open file. |
-| lock              |       ✔️     | Apply file locking. |
-
 ## How to use it
 
 ### Compile the project
@@ -215,6 +133,57 @@ make fusetest
 > That will compile the project and run the tests.
 > *You can see in output the tests results.*
 
+
+
+## Supported Callbacks
+
+***From the filesystem***
+
+> **Note**
+>
+> The listed callbacks that are not yet implemented (indicated with ❌) are in development and will be supported in
+> later releases.
+
+| Callbacks         | Implemented  | Description  |
+|-------------------|:------------:|:-------------|
+| getattr           |       ✔️      | Get attributes of a file. | 
+| readdir           |       ✔️      | Read the contents of a directory. |
+| open              |       ✔️      | Open a file. |
+| read              |       ✔️      | Read data from a file. |
+| write             |       ✔️      | Write data to a file. |
+| create            |       ✔️      | Create a file. |
+| unlink            |       ✔️      | Delete a file. |
+| mkdir             |       ✔️      | Create a directory. |
+| rmdir             |       ✔️      | Delete a directory. |
+| rename            |       ✔️      | Rename a file or directory. |
+| truncate          |       ✔️      | Modify the size of a file. |
+| utimens           |       ✔️      | Modify the access and modification times of a file. |
+| chmod             |       ✔️      | Modify the permissions of a file. |
+| chown             |       ❌     | Change the owner or group of a file. |
+| link              |       ❌     | Create a hard link. |
+| symlink           |       ❌     | Create a symbolic link. |
+| readlink          |       ❌     | Read the target of a symbolic link. |
+| release           |       ✔️     | Close a file. |
+| destroy           |       ✔️      | Destroy the filesystem data structure. |
+| flush             |       ✔️      | Flush cached resources. |
+| fsync             |       ❌     | Synchronize modifications to a file. |
+| setxattr          |       ❌     | Set an extended attribute. |
+| getxattr          |       ❌     | Get an extended attribute. |
+| listxattr         |       ❌     | List extended attributes. |
+| removexattr       |       ❌     | Remove an extended attribute. |
+| mknod             |       ❌     | Create a special or ordinary file. |
+| statfs            |       ❌     | Get filesystem statistics. |
+| opendir           |       ❌     | Open a directory. |
+| releasedir        |       ❌     | Close a directory. |
+| fsyncdir          |       ❌     | Synchronize modifications to a directory. |
+| init              |       ✔️      | Initialize the filesystem. This is often used to set up global resources. |
+| access            |       ❌     | Check access permissions for a file. |
+| ftruncate         |       ❌     | Modify the size of an open file. |
+| fgetattr          |       ❌     | Get the attributes of an open file. |
+| lock              |       ✔️     | Apply file locking. |
+
+
+
 ## About FUSE
 
 > **Note**
@@ -239,6 +208,45 @@ or **init** is used to initialize the filesystem but it's also used to set up gl
 > In my case I use fuse_config->remove_hard = 1; this make the filesystem able to remove file / directory even if there is a process that use it. (It's useful when I encounter a bug and I can't remove a file / directory because it's used by a process)
 >
 > I also use **destroy** to free the tree and all the resources used by the filesystem.
+
+
+
+### Binary tree filesystem
+
+Exemple of a binary tree filesystem (you can find it in the file ***tree.c / tree.h***):
+
+Using this code :
+```c
+// Test the tree
+int main(void)
+{
+    init_root();
+    sys_add_file("/home");
+    sys_add_file("/home/user");
+    sys_add_file("/home/user/file.txt");
+    sys_add_file("/home/user/file2.txt");
+    sys_add_file("/home/lala");
+    sys_add_file("/home/lala/file.txt");
+    sys_remove_file("/home/lala");
+    sys_add_file("/home/lala");
+    sys_add_file("/home/lala/file.txt");
+    print_tree();
+    free_tree(sys_get_root());
+}
+```
+
+I get this output :
+```
+/
+  /home
+    /user
+      /file.txt
+      /file2.txt
+    /lala
+      /file.txt
+```
+
+
 
 ### About file descriptors
 
