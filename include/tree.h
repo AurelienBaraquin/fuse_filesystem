@@ -4,17 +4,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <pthread.h>
-
-#define MAX_CHILD 100
-
-typedef struct node {
-    char *name;
-    unsigned char *content;
-    size_t compressed_size;
-    struct stat stat;
-    struct node *parent;
-    struct node *childs[MAX_CHILD];
-} node_t;
+#include "node.h"
 
 /*  type    |   name     |   content |   size    |   parent  |   childs
     reg     |     Y      |     Y     |     Y     |     Y     |      N
