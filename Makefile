@@ -14,6 +14,14 @@ TEST_OBJECTS = $(TEST_SOURCES:.c=.o)
 EXECUTABLE = myfuse
 TEST_EXECUTABLE = run_unitests
 
+
+# MOUNTPOINT _________________________________________________________________
+
+MOUNTPOINT = mount_dir
+
+# ____________________________________________________________________________
+
+
 FUSE_TEST_EXECUTABLE = fuse_test.pl
 
 all: $(EXECUTABLE)
@@ -29,6 +37,10 @@ $(TESTDIR)/%.o: $(TESTDIR)/%.c
 
 $(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(SRCDIR)/main.o, $(OBJECTS))
 	$(CC) $^ -o $@ $(CHECK_LDFLAGS) $(LDFLAGS)
+
+run : $(EXECUTABLE)
+	mkdir -p $(MOUNTPOINT)
+	./$(EXECUTABLE) -o allow_other -o clone_fd $(MOUNTPOINT)
 
 unitest: $(TEST_EXECUTABLE)
 	./$(TEST_EXECUTABLE)
