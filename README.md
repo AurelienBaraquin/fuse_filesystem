@@ -239,3 +239,34 @@ or **init** is used to initialize the filesystem but it's also used to set up gl
 > In my case I use fuse_config->remove_hard = 1; this make the filesystem able to remove file / directory even if there is a process that use it. (It's useful when I encounter a bug and I can't remove a file / directory because it's used by a process)
 >
 > I also use **destroy** to free the tree and all the resources used by the filesystem.
+
+### About file descriptors
+
+I have implemented my own file descriptors system, I use a struct to store the file descriptors informations :
+```c
+/* File lock types */
+typedef struct {
+    unsigned char is_locked : 1;
+    int lock_type;
+    pid_t pid;  // pid of the process that locked the file
+} file_lock_t;
+
+/* File descriptor */
+typedef struct fd {
+    unsigned char attribued : 1;
+    node_t *node;
+    file_lock_t lock;
+} fd_t;
+```
+
+This struct contain all the informations about a file descriptor, I use a node_t pointer to store the node of the file descriptor, I use a file_lock_t struct to store the informations about the lock of the file descriptor and I use a boolean to know if the file descriptor is attribued or not.
+
+I use a fd_t array to store all the file descriptors, I use a mutex to protect the access to the array.
+
+```c
+/* File descriptor table */
+fd_t fd_table[MAX_FILES];
+
+/* Mutex for the file descriptor table */
+static pthread_mutex_t fd_table_mutex = PTHREAD_MUTEX_INITIALIZER;
+```
