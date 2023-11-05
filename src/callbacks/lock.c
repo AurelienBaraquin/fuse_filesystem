@@ -42,5 +42,6 @@ int apply_lock(fd_t *fd, int cmd, struct flock *lock) {
 
 //* LOCK ______________________________________________________________________*/
 int ffuse_lock(const char *path, struct fuse_file_info *fi, int cmd, struct flock *lock) {
+    (void)path;
     return apply_lock(get_fd((int)fi->fh), cmd, lock);
 }
