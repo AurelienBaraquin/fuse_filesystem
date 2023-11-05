@@ -42,6 +42,10 @@ run : $(EXECUTABLE)
 	mkdir -p $(MOUNTPOINT)
 	./$(EXECUTABLE) -o allow_other -o clone_fd $(MOUNTPOINT)
 
+run_debug : $(EXECUTABLE)
+	mkdir -p $(MOUNTPOINT)
+	./$(EXECUTABLE) -o allow_other -o clone_fd -d $(MOUNTPOINT)
+
 unitest: $(TEST_EXECUTABLE)
 	./$(TEST_EXECUTABLE)
 	@echo "Tests completed."
