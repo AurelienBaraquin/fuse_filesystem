@@ -1,5 +1,6 @@
 #include "fd.h"
 #include <pthread.h>
+#include <string.h>
 
 /* File descriptor table */
 fd_t fd_table[MAX_FILES];
