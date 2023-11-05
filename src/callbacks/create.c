@@ -10,7 +10,9 @@ int ffuse_create(const char *path, mode_t mode, struct fuse_file_info *fi)
     if (get_file(path) != NULL)
         RETURN_UNLOCK_TREE(-EEXIST);
 
-    create_entry(path, mode | S_IFREG);
+    node_t *file = create_entry(path, mode | S_IFREG);
+    if (file == NULL)
+        RETURN_UNLOCK_TREE(-ENOMEM);
 
     unlock_tree();
     return 0;
