@@ -178,7 +178,6 @@ make fusetest
 | fsyncdir          |       ❌     | Synchronize modifications to a directory. |
 | init              |       ✔️      | Initialize the filesystem. This is often used to set up global resources. |
 | access            |       ❌     | Check access permissions for a file. |
-| ftruncate         |       ❌     | Modify the size of an open file. |
 | fgetattr          |       ❌     | Get the attributes of an open file. |
 | lock              |       ✔️      | Apply file locking. |
 
