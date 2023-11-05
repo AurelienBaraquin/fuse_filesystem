@@ -10,7 +10,9 @@ int ffuse_mkdir(const char *path, mode_t mode)
     if (get_file(path) != NULL)
         RETURN_UNLOCK_TREE(-EEXIST);
 
-    create_entry(path, mode | S_IFDIR);
+    node_t *file = create_entry(path, mode | S_IFDIR);
+    if (file == NULL)
+        RETURN_UNLOCK_TREE(-ENOMEM);
 
     unlock_tree();
     return 0;
