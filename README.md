@@ -277,3 +277,12 @@ fd_t fd_table[MAX_FILES];
 /* Mutex for the file descriptor table */
 static pthread_mutex_t fd_table_mutex = PTHREAD_MUTEX_INITIALIZER;
 ```
+
+### File storage
+
+All my files (and directories) are stored in a binary tree [Binary tree filesystem](#binary-tree-filesystem).
+Ok but I want to speak about the storage of the data of the files, I use the zlib library to compress the data of the files so I always store compressed data in the tree and I decompress the data when I read a file (or when it's necessary) and I compress the data when I write a file.
+
+> **Note**
+>
+> I was worried about the performance of the filesystem because of the compression / decompression of the data but I didn't notice any performance loss.
