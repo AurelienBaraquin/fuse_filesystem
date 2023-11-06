@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Test::More tests => 7; # The number here must correspond to the total number of tests
+use Test::More tests => 8; # The number here must correspond to the total number of tests
 use File::Path qw(make_path remove_tree);
 
 # Directory to mount the FUSE file system
@@ -56,6 +56,11 @@ ok(-e $file_name, 'File read test with cat');
 system("echo 'HIIII' > $file_name");
 system("ls -l $file_name") == 0 or stop_tester("Could not write to file: $!", $test_dir);
 ok(-e $file_name, 'File write test with echo');
+
+# Test 8: Run a python script
+system("echo 'print(\"Hello World!\")' > $file_name");
+system("python3 $file_name") == 0 or stop_tester("Could not run python script: $!", $test_dir);
+ok(-e $file_name, 'Python script test');
 
 #* ___________________________________________________________________________
 
