@@ -14,6 +14,8 @@ int ffuse_truncate(const char *path, off_t size, struct fuse_file_info *fi)
     if (!S_ISREG(node->stat.st_mode))
         RETURN_UNLOCK_TREE(-EISDIR);
 
+    decompress_content(node);
+
     if (size == 0) {
         free(node->content);
         node->content = NULL;

@@ -17,6 +17,8 @@ int ffuse_write(const char *path, const char *buf, size_t size, off_t offset, st
         RETURN_UNLOCK_TREE(-EISDIR);
     }
 
+    decompress_content(node);
+
     node->content = realloc(node->content, offset + size);
     if (node->content == NULL) {
         RETURN_UNLOCK_TREE(-ENOMEM);
