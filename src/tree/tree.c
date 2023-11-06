@@ -212,9 +212,6 @@ node_t *get_file(const char *path) {
     if (!file)
         return NULL;
 
-    if (file->stat.st_mode & S_IFREG)
-        decompress_content(file);
-
     return file;
 }
 
